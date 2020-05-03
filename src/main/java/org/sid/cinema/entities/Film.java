@@ -14,9 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 //les annotations JPA sont : @Entity , @Table, @Id, @GeneratedValue , @Inheritance ,@ManyToOne , @ManyToMany , ....
 //les annotations lombook sont : @Data , @NoArgConstructor , @AllArgConstructor , @ToString, ..... 
@@ -44,6 +48,7 @@ public class Film implements Serializable {
 
 	// attributs d'association
 	@OneToMany(mappedBy = "film")
+	@JsonProperty(access = Access.WRITE_ONLY)// on utilise l'annotation "JsonProperty" pour eviter au moment d'execution l'appel a cette classe
 	private Collection<ProjectionFilm> projectionFilms;
 	@ManyToOne
 	private Categorie categorie;

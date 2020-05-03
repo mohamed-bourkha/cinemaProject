@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +38,7 @@ public class Categorie implements Serializable {
 	// attributs d'association
 	@OneToMany(mappedBy = "categorie") // "categorie" est attribut $ d'association $ de la classe Film (association
 										// entre la classe Category et Film )
+	@JsonProperty(access = Access.WRITE_ONLY)// on utilise l'annotation "JsonProperty" pour eviter au moment d'execution l'appel a cette classe
 	private Collection<Film> films;
 
 }

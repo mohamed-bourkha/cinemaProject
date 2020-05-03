@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,7 @@ public class Ticket implements Serializable {
 	@Column(length = 50)
 	private String nomClient;
 	private double prix;
-	@Column(unique = true, nullable = true)
+	@Column(unique = false, nullable = true)
 	private Integer codePayement;
 	private boolean reserve;
 
@@ -38,6 +40,7 @@ public class Ticket implements Serializable {
 	@ManyToOne
 	private Place place;
 	@ManyToOne
+	
 	private ProjectionFilm projectionFilm;
 
 }

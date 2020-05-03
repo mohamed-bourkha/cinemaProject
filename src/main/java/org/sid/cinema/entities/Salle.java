@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,10 +38,13 @@ public class Salle implements Serializable {
 
 	// attributs d'association
 	@ManyToOne
+	@JsonProperty(access = Access.WRITE_ONLY)// on utilise l'annotation "JsonProperty" pour eviter au moment d'execution l'appel a cette classe
 	private Cinema cinema;
 	@OneToMany(mappedBy = "salle")
+	@JsonProperty(access = Access.WRITE_ONLY) // on utilise l'annotation "JsonProperty" pour eviter au moment d'execution l'appel a cette classe
 	private Collection<Place> places;
 	@OneToMany(mappedBy = "salle")
+	@JsonProperty(access = Access.WRITE_ONLY)// on utilise l'annotation "JsonProperty" pour eviter au moment d'execution l'appel a cette classe
 	private Collection<ProjectionFilm> projectionFilms;
 
 }
